@@ -166,7 +166,7 @@ pipeline {
 				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print $7}\'|awk -F \"/\" \'{print $1}\'|xargs kill -9"'
 																  //netstat -tunlp|grep 8089|awk '{print }'|awk -F / '{print }'|xargs kill -9
 																  //netstat -tunlp|grep 8089|awk '{print $7}'|awk -F "/" '{print $1}'|xargs kill -9
-				sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp"'
+				sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089"'
 				sh 'kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/'				
 				sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java -jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar"'
 				//sh 'JENKINS_NODE_COOKIE=dontKillMe java -jar HTTPserver.jar HTTPserver.log 2>&1 &'
