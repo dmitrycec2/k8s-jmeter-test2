@@ -130,7 +130,7 @@ kubectl exec -ti -n $tenant ${slavearray[i]} -- bash -c "cd /opt/$jmeter/bin/${p
 #kubectl exec -n $tenant --stdin --tty "${slavearray[i]}" -- bash -c "chmod 777 /opt/$jmeter/bin/${product_name}/jmeter-start-test.sh"
 
 #kubectl exec -ti -n $tenant ${slavearray[i]} -- bash ./jmeter -n -t $test_name.jmx -l /host/jmeter_results/${test_name}_${slavearray[i]}.jtl
-kubectl cp -n $tenant "${slavearray[i]}":/opt/$jmeter/bin/${product_name}/results/${profile}/${test_name}_${slavearray[i]}.jtl "$working_dir"/jmeter_results2/${test_name}_${slavearray[i]}.jtl
+kubectl cp -n $tenant "${slavearray[i]}":/opt/$jmeter/bin/${product_name}/results/${profile}/${test_name}.jtl "$working_dir"/jmeter_results2/${test_name}_${slavearray[i]}.jtl
 echo "--------executed  "${slavearray[i]}
 pwd
 
