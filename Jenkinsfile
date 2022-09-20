@@ -159,13 +159,13 @@ pipeline {
         }
 		steps {
 			script {
-			dir('HTTPserver/HTTPserver/dist') {
+			
 				sh 'pwd'
 				sh 'ls'
 				sh 'kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/'
 				//kubectl exec -ti --tty -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java - jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar"
 				//sh 'JENKINS_NODE_COOKIE=dontKillMe java -jar HTTPserver.jar HTTPserver.log 2>&1 &'
-			}
+			
 			}		
 		}	
 	}
