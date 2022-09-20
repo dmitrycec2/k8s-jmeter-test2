@@ -160,9 +160,9 @@ pipeline {
 		steps {
 			script {
 			dir('HTTPserver/HTTPserver/dist') {
-				//kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/
+				sh 'kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/'
 				//kubectl exec -ti --tty -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java - jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar"
-				sh 'JENKINS_NODE_COOKIE=dontKillMe java -jar HTTPserver.jar HTTPserver.log 2>&1 &'
+				//sh 'JENKINS_NODE_COOKIE=dontKillMe java -jar HTTPserver.jar HTTPserver.log 2>&1 &'
 			}
 			}		
 		}	
@@ -219,7 +219,7 @@ pipeline {
 						def workspace = "${env.WORKSPACE}"
 						echo "Current workspace "+workspace
 						env.custom_var=workspace
-						currtasks1 =  prepareStages("slave1")
+						currtasks1 =  runStages("slave1")
 							stage('Testt') {
 								parallel currtasks1
 							}					
