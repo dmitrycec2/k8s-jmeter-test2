@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/HTTPserver.jar"/>
+	<classpathentry kind="lib" path="dist/lib/jackson-mapper-asl-1.8.8.jar"/>
+	<classpathentry kind="lib" path="dist/lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="dist/lib/json-path-2.1.0.jar"/>
+	<classpathentry kind="lib" path="dist/lib/json-path-2.4.0.jar"/>
+	<classpathentry kind="lib" path="dist/lib/json-smart-2.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/json-smart-2.3.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-mapper-asl-1.8.8.jar"/>
+	<classpathentry kind="lib" path="lib/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="lib/json-path-2.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/json-path-2.4.0.jar"/>
+	<classpathentry kind="lib" path="lib/json-smart-2.2.jar"/>
+	<classpathentry kind="lib" path="lib/json-smart-2.3.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

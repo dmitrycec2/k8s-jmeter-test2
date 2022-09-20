@@ -1,15 +1,16 @@
 def BRANCH_NAME = 'main'
 def prepareStages(String name) {
 	def tasks = [:]
-	tasks["task_1"] = {
-	  stage ("task_1"){    
+	tasks["prepare_UC00"] = {
+	  stage ("prepare_UC00"){    
 		node("${name}") {
 			dir("${env.custom_var}"){
-				if(P_UC022.toString()=="${name}"){
+				
 					sh 'echo -----------------1'
 					//sh './test.sh UC01_run'
-					sh './start_test_on_slave.sh scripts/UC022.jmx jmeter-0 profile_max'
-				}		
+					sh './start_test_on_slave.sh scripts/UC00.jmx jmeter-0 profile_prepare'
+					//sh './profile_run.sh profile_prepare UC00'	
+						
 
 			}
 		}
@@ -18,19 +19,102 @@ def prepareStages(String name) {
 return tasks
 }
 
+
+
+
+def runStages(String name, String profile) {
+	def tasks = [:]
+	tasks["task_1"] = {
+	  stage ("task_1"){    
+		node("${name}") {
+			dir("${env.custom_var}"){
+				if(P_UC01.toString()=="${name}"){
+					//sh "./profile_run.sh ${profile} UC01"
+					sh './start_test_on_slave.sh scripts/UC01.jmx jmeter-0 ${profile}'
+				}		
+			}
+		}
+	  }
+	}
+	tasks["task_2"] = {
+	  stage ("task_2"){    
+		node("${name}") {  
+			dir("${env.custom_var}"){
+				if(P_UC02.toString()=="${name}"){
+					sh './start_test_on_slave.sh scripts/UC02.jmx jmeter-0 ${profile}'
+				}
+			}
+		}
+	  }
+	}
+	tasks["task_3"] = {
+	  stage ("task_3"){    
+		node("${name}") {  
+			dir("${env.custom_var}"){
+				if(P_UC03.toString()=="${name}"){
+					sh './start_test_on_slave.sh scripts/UC03.jmx jmeter-0 ${profile}'
+				}
+			}
+		}
+	  }
+	}
+	tasks["task_4"] = {
+	  stage ("task_4"){    
+		node("${name}") {  
+			dir("${env.custom_var}"){
+				if(P_UC04.toString()=="${name}"){
+					sh './start_test_on_slave.sh scripts/UC04.jmx jmeter-0 ${profile}'
+				}
+			}
+		}
+	  }
+	}
+return tasks
+}
+
+
+
 pipeline {
   parameters { 
+    choice(
+      name: 'P_PROFILE',
+      description: '',
+      choices: ['profile_confirm'] as List
+    )
     choice(
       name: 'P_SLAVE1',
       description: '',
       choices: ['enable', 'NULL'] as List
     )
     choice(
-      name: 'P_UC022',
+      name: 'P_UC01',
+      description: '',
+      choices: ['slave1', 'NULL'] as List
+    )	
+    choice(
+      name: 'P_UC02',
       description: '',
       choices: ['slave1', 'NULL'] as List
     )		
-  } 
+    choice(
+      name: 'P_UC03',
+      description: '',
+      choices: ['slave1', 'NULL'] as List
+    )
+    choice(
+      name: 'P_UC04',
+      description: '',
+      choices: ['slave1', 'NULL'] as List
+    )	
+    choice(
+      name: 'P_HTTP_ON_SLAVE1',
+      description: '',
+      choices: ['enable', 'NULL'] as List
+    )	
+  }  
+  
+  
+  
   agent none
   options {
     skipDefaultCheckout()
@@ -62,6 +146,59 @@ pipeline {
 		}	
 	}
 
+
+    stage('HTTPserver On slave1') {
+	when {
+		beforeAgent true;
+	    expression {
+            return P_HTTP_ON_SLAVE1.toString()!='NULL';
+        }        
+    }
+		agent {
+            label 'slave1'
+        }
+		steps {
+			script {
+			dir('HTTPserver/HTTPserver/dist') {
+				kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/
+				kubectl exec -ti --tty -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java - jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar"
+			}
+			}		
+		}	
+	}
+
+
+
+
+    stage('Prepare') {
+		parallel {
+			stage('Prepare On slave1') {
+				when {
+					beforeAgent true;
+					expression {
+						return P_SLAVE1.toString()!='NULL';
+					}        
+				}
+			    agent {
+                   label 'slave1'
+                }				
+				steps {						
+					script {					
+						def workspace = "${env.WORKSPACE}"
+						echo "Current workspace "+workspace
+						env.custom_var=workspace
+						currtasks1 =  prepareStages("slave1")
+							stage('prepareStages') {
+								parallel currtasks1
+
+							}
+						
+					}	
+				}
+			}
+		
+		}	
+	}
 	
     stage('Tests') {
 		parallel {
@@ -79,7 +216,6 @@ pipeline {
 					script {
 						echo "Current workspace is ${env.WORKSPACE}"
 						def workspace = "${env.WORKSPACE}"
-						echo "Current workspace is ${workspace}"
 						echo "Current workspace "+workspace
 						env.custom_var=workspace
 						currtasks1 =  prepareStages("slave1")

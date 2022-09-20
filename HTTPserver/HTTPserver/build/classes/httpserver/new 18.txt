@@ -1,0 +1,13 @@
+
+значение заменяется каждый раз при обновлении и удаляется при считывании
+http://localhost:8088/valueput?param=par1&value=1
+http://localhost:8088/valuepoll?param=par1
+
+
+Создаём именованные списки с параметрами
+http://localhost:8088/listoffer?param=par1&value=1
+
+http://localhost:8088/listpoll?param=par1
+
+http://localhost:8088/listoffer?param=${login}&value=${doc_id}
+http://localhost:8088/listpoll?param=${login}

@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Blazemeter test plan" enabled="true">
+      <stringProp name="TestPlan.comments">This test plan was created by the BlazeMeter converter v.3.1.23. Please contact support@blazemeter.com for further support.</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="set_sys_props_testData - temporary" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="temp_script_num" elementType="Argument">
+            <stringProp name="Argument.name">temp_script_num</stringProp>
+            <stringProp name="Argument.value">01</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_testID" elementType="Argument">
+            <stringProp name="Argument.name">temp_testID</stringProp>
+            <stringProp name="Argument.value">${__time(yyyy-MM-dd HH:mm:ss,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_targetConcurrency" elementType="Argument">
+            <stringProp name="Argument.name">temp_targetConcurrency</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.desc">sec - 4 hours</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_holdLoad" elementType="Argument">
+            <stringProp name="Argument.name">temp_holdLoad</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
+            <stringProp name="Argument.desc">sec - 30 min</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_stepTime" elementType="Argument">
+            <stringProp name="Argument.name">temp_stepTime</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.desc">sec - 10 min</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_rampUpTime" elementType="Argument">
+            <stringProp name="Argument.name">temp_rampUpTime</stringProp>
+            <stringProp name="Argument.value">5</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_stepSize" elementType="Argument">
+            <stringProp name="Argument.name">temp_stepSize</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_pacingTargetThroughput" elementType="Argument">
+            <stringProp name="Argument.name">temp_pacingTargetThroughput</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="sys_name" elementType="Argument">
+            <stringProp name="Argument.name">sys_name</stringProp>
+            <stringProp name="Argument.value">dl</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="temp_iterationCount" elementType="Argument">
+            <stringProp name="Argument.name">temp_iterationCount</stringProp>
+            <stringProp name="Argument.value">10</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="get_sys_props_testData" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="script_num" elementType="Argument">
+            <stringProp name="Argument.name">script_num</stringProp>
+            <stringProp name="Argument.value">${__property(script_num, script_num, ${temp_script_num})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="testID" elementType="Argument">
+            <stringProp name="Argument.name">testID</stringProp>
+            <stringProp name="Argument.value">${__property(testID, testID, ${temp_testID})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="targetConcurrency" elementType="Argument">
+            <stringProp name="Argument.name">targetConcurrency</stringProp>
+            <stringProp name="Argument.value">${__property(targetConcurrency, targetConcurrency, ${temp_targetConcurrency})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="holdLoad" elementType="Argument">
+            <stringProp name="Argument.name">holdLoad</stringProp>
+            <stringProp name="Argument.value">${__property(holdLoad, holdLoad, ${temp_holdLoad})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="stepTime" elementType="Argument">
+            <stringProp name="Argument.name">stepTime</stringProp>
+            <stringProp name="Argument.value">${__property(stepTime, stepTime, ${temp_stepTime})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="rampUpTime" elementType="Argument">
+            <stringProp name="Argument.name">rampUpTime</stringProp>
+            <stringProp name="Argument.value">${__property(rampUpTime, rampUpTime, ${temp_rampUpTime})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="stepSize" elementType="Argument">
+            <stringProp name="Argument.name">stepSize</stringProp>
+            <stringProp name="Argument.value">${__property(stepSize, stepSize, ${temp_stepSize})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="pacingTargetThroughput" elementType="Argument">
+            <stringProp name="Argument.name">pacingTargetThroughput</stringProp>
+            <stringProp name="Argument.value">${__property(pacingTargetThroughput, pacingTargetThroughput, ${temp_pacingTargetThroughput})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="iterationCount" elementType="Argument">
+            <stringProp name="Argument.name">iterationCount</stringProp>
+            <stringProp name="Argument.value">${__property(iterationCount, iterationCount, ${temp_iterationCount})}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="---------------------------------------------------------" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </Arguments>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="network config" enabled="true">
+        <stringProp name="delimiter">,</stringProp>
+        <stringProp name="fileEncoding">UTF-8</stringProp>
+        <stringProp name="filename">../config/networkconfig.csv</stringProp>
+        <boolProp name="ignoreFirstLine">true</boolProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="variableNames">protocol,host,port,client_id,grant_type,client_secret</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="influx_configurations" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="influx_protocol" elementType="Argument">
+            <stringProp name="Argument.name">influx_protocol</stringProp>
+            <stringProp name="Argument.value">http</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="influx_host" elementType="Argument">
+            <stringProp name="Argument.name">influx_host</stringProp>
+            <stringProp name="Argument.value">10.153.150.53</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="influx_port" elementType="Argument">
+            <stringProp name="Argument.name">influx_port</stringProp>
+            <stringProp name="Argument.value">8086</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">If there is no port, remove &quot;:&quot; from Backend Listener</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="network config test" enabled="false">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="protocol" elementType="Argument">
+            <stringProp name="Argument.name">protocol</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="host" elementType="Argument">
+            <stringProp name="Argument.name">host</stringProp>
+            <stringProp name="Argument.value">krakend-test.b2b.alrosa.ru</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="port" elementType="Argument">
+            <stringProp name="Argument.name">port</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="authProtocol" elementType="Argument">
+            <stringProp name="Argument.name">authProtocol</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="authHost" elementType="Argument">
+            <stringProp name="Argument.name">authHost</stringProp>
+            <stringProp name="Argument.value">krakend-test.b2b.alrosa.ru</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="authPort" elementType="Argument">
+            <stringProp name="Argument.name">authPort</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="network config stg" enabled="false">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="protocol" elementType="Argument">
+            <stringProp name="Argument.name">protocol</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="host" elementType="Argument">
+            <stringProp name="Argument.name">host</stringProp>
+            <stringProp name="Argument.value">krakend-stg.b2b.alrosa.ru</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="port" elementType="Argument">
+            <stringProp name="Argument.name">port</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="authProtocol" elementType="Argument">
+            <stringProp name="Argument.name">authProtocol</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="authHost" elementType="Argument">
+            <stringProp name="Argument.name">authHost</stringProp>
+            <stringProp name="Argument.value">krakend-stg.b2b.alrosa.ru</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="authPort" elementType="Argument">
+            <stringProp name="Argument.name">authPort</stringProp>
+            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="---------------------------------------------------------" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="queue_configurations" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="queue_host" elementType="Argument">
+            <stringProp name="Argument.name">queue_host</stringProp>
+            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="queue_port" elementType="Argument">
+            <stringProp name="Argument.name">queue_port</stringProp>
+            <stringProp name="Argument.value">8089</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="delay_time" elementType="Argument">
+            <stringProp name="Argument.name">delay_time</stringProp>
+            <stringProp name="Argument.value">120000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="check_number" elementType="Argument">
+            <stringProp name="Argument.name">check_number</stringProp>
+            <stringProp name="Argument.value">5</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Variables general" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="outQueue" elementType="Argument">
+            <stringProp name="Argument.name">outQueue</stringProp>
+            <stringProp name="Argument.value">docs</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="outDeleteQueue" elementType="Argument">
+            <stringProp name="Argument.name">outDeleteQueue</stringProp>
+            <stringProp name="Argument.value">outDeleteQueue</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header manager" enabled="true">
+        <collectionProp name="HeaderManager.headers"/>
+      </HeaderManager>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </Arguments>
+      <hashTree/>
+      <DNSCacheManager guiclass="DNSCachePanel" testclass="DNSCacheManager" testname="DNS Cache Manager" enabled="true">
+        <collectionProp name="DNSCacheManager.servers"/>
+        <boolProp name="DNSCacheManager.clearEachIteration">true</boolProp>
+        <boolProp name="DNSCacheManager.isCustomResolver">false</boolProp>
+        <collectionProp name="DNSCacheManager.hosts"/>
+      </DNSCacheManager>
+      <hashTree/>
+      <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
+        <collectionProp name="AuthManager.auth_list"/>
+        <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
+      </AuthManager>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies">
+          <elementProp name="_ym_d" elementType="Cookie" testname="_ym_d">
+            <stringProp name="Cookie.value">1657808017</stringProp>
+            <stringProp name="Cookie.domain"></stringProp>
+            <stringProp name="Cookie.path"></stringProp>
+            <boolProp name="Cookie.secure">true</boolProp>
+            <longProp name="Cookie.expires">0</longProp>
+            <boolProp name="Cookie.path_specified">true</boolProp>
+            <boolProp name="Cookie.domain_specified">true</boolProp>
+          </elementProp>
+          <elementProp name="_ym_uid" elementType="Cookie" testname="_ym_uid">
+            <stringProp name="Cookie.value">1657808017938105760</stringProp>
+            <stringProp name="Cookie.domain"></stringProp>
+            <stringProp name="Cookie.path"></stringProp>
+            <boolProp name="Cookie.secure">true</boolProp>
+            <longProp name="Cookie.expires">0</longProp>
+            <boolProp name="Cookie.path_specified">true</boolProp>
+            <boolProp name="Cookie.domain_specified">true</boolProp>
+          </elementProp>
+        </collectionProp>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+        <boolProp name="clearEachIteration">true</boolProp>
+        <boolProp name="useExpires">false</boolProp>
+        <boolProp name="CacheManager.controlledByThread">false</boolProp>
+      </CacheManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${iterationCount}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">0</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="pacing_01" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Flow Control - pacing" enabled="true">
+            <intProp name="ActionProcessor.action">1</intProp>
+            <intProp name="ActionProcessor.target">0</intProp>
+            <stringProp name="ActionProcessor.duration">0</stringProp>
+          </TestAction>
+          <hashTree>
+            <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="Constant Throughput Timer" enabled="true">
+              <intProp name="calcMode">0</intProp>
+              <stringProp name="throughput">${pacingTargetThroughput}</stringProp>
+            </ConstantThroughputTimer>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV path" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">./UC01/UC01_path.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">lineNum,currPath,readblePath</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="user" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">./UC01/UC01_user.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">user,pass,userid</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="currFile" enabled="true">
+          <stringProp name="delimiter">\t</stringProp>
+          <stringProp name="fileEncoding">UTF-8</stringProp>
+          <stringProp name="filename">./UC01/file.csv</stringProp>
+          <boolProp name="ignoreFirstLine">false</boolProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="variableNames">currFile</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="docCounter" enabled="true">
+          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.end"></stringProp>
+          <stringProp name="CounterConfig.incr">1</stringProp>
+          <stringProp name="CounterConfig.name">docCounter</stringProp>
+          <stringProp name="CounterConfig.format"></stringProp>
+          <boolProp name="CounterConfig.per_user">false</boolProp>
+        </CounterConfig>
+        <hashTree/>
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="UC01-MAIN" enabled="true">
+          <boolProp name="TransactionController.includeTimers">false</boolProp>
+          <boolProp name="TransactionController.parent">false</boolProp>
+        </TransactionController>
+        <hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="UC01_04_saveDoc" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="jp@gc - Dummy Sampler" enabled="true">
+              <boolProp name="WAITING">true</boolProp>
+              <boolProp name="SUCCESFULL">true</boolProp>
+              <stringProp name="RESPONSE_CODE">200</stringProp>
+              <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+              <stringProp name="REQUEST_DATA">Dummy Sampler used to simulate requests and responses
+without actual network activity. This helps debugging tests.</stringProp>
+              <stringProp name="RESPONSE_DATA">Dummy Sampler used to simulate requests and responses
+without actual network activity. This helps debugging tests.</stringProp>
+              <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+              <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+              <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+              <stringProp name="URL"></stringProp>
+              <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+            </kg.apc.jmeter.samplers.DummySampler>
+            <hashTree>
+              <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="docId" enabled="true">
+                <stringProp name="scriptLanguage">groovy</stringProp>
+                <stringProp name="parameters"></stringProp>
+                <stringProp name="filename"></stringProp>
+                <stringProp name="cacheKey">false</stringProp>
+                <stringProp name="script">import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+DateFormat df = new SimpleDateFormat(&quot;ddMMyyyyhhmmss&quot;);
+String requiredDate = df.format(new Date()).toString();
+vars.put(&quot;docId&quot;, requiredDate+&quot;_&quot;+vars.get(&quot;docCounter&quot;));</stringProp>
+              </JSR223PreProcessor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="docPath" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">docPath</stringProp>
+                <stringProp name="RegexExtractor.regex">path&quot;:&quot;(.+?)&quot;}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="filePath" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">filePath</stringProp>
+                <stringProp name="RegexExtractor.regex">&quot;:&quot;(.+?)&quot;}</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number"></stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="toQueue" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">def outQueue = vars.get(&quot;outQueue&quot;);
+def outDeleteQueue = vars.get(&quot;outDeleteQueue&quot;);
+toQueue(outQueue+&quot;_testuser2&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser3&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser4&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser5&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser6&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser7&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser8&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser9&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outQueue+&quot;_testuser10&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+toQueue(outDeleteQueue, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+//-------------------functions--------------------
+
+public String listPoll(String AFParam) {	
+	StringBuffer sb = new StringBuffer();
+	sb.append(&quot;http://&quot;);
+	sb.append(vars.get(&quot;queue_host&quot;));
+	sb.append(&quot;:&quot;);
+	sb.append(vars.get(&quot;queue_port&quot;));
+	sb.append(&quot;/listpoll?param=&quot;);
+	sb.append(AFParam);
+	def get = new URL(sb.toString()).openConnection();
+	
+	def getRC = get.getResponseCode();
+	if(getRC.equals(200)) {
+		return get.getInputStream().getText();
+	}
+	return null;
+}
+
+
+/*унифицированный запрос listoffer к очереди*/  
+public boolean toQueue(String AFQueue, String AFValue) {
+	if(isValueFound(AFQueue) &amp;&amp; isValueFound(AFValue)){		
+		StringBuffer sb = new StringBuffer();
+		sb.append(&quot;http://&quot;);
+		sb.append(vars.get(&quot;queue_host&quot;));
+		sb.append(&quot;:&quot;);
+		sb.append(vars.get(&quot;queue_port&quot;));
+		sb.append(&quot;/listoffer?param=&quot;);
+		sb.append(AFQueue);
+		sb.append(&quot;&amp;value=&quot;);
+		sb.append(AFValue);
+		def get = new URL(sb.toString()).openConnection();
+		//log.info(&quot;INFO__________sb.toString()______________&quot;+ sb.toString())
+		def getRC = get.getResponseCode();
+		return true;
+	}
+	return false;
+}
+
+
+/*унифицированный запрос listoffer к очереди*/  
+public boolean valuePut(String AFQueue, String AFValue) {
+	if(isValueFound(AFQueue) &amp;&amp; isValueFound(AFValue)){		
+		StringBuffer sb = new StringBuffer();
+		sb.append(&quot;http://&quot;);
+		sb.append(vars.get(&quot;queue_host&quot;));
+		sb.append(&quot;:&quot;);
+		sb.append(vars.get(&quot;queue_port&quot;));
+		sb.append(&quot;/valueput?param=&quot;);
+		sb.append(AFQueue);
+		sb.append(&quot;&amp;value=&quot;);
+		sb.append(AFValue);
+		def get = new URL(sb.toString()).openConnection();
+		//log.info(&quot;INFO__________sb.toString()______________&quot;+ sb.toString())
+		def getRC = get.getResponseCode();
+		return true;
+	}
+	return false;
+}
+
+/*проверка входящей строки*/
+public boolean isValueFound(String varValue) {
+	return (varValue != null) &amp;&amp; (!varValue.isEmpty()) &amp;&amp; (!&quot;NOTFOUND&quot;.equals(varValue)) &amp;&amp; (varValue.length() &gt; 0);
+}</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+        <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="influxdbMetricsSender" elementType="Argument">
+              <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
+              <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdbUrl" elementType="Argument">
+              <stringProp name="Argument.name">influxdbUrl</stringProp>
+              <stringProp name="Argument.value">${influx_protocol}://${influx_host}:${influx_port}/write?db=jmeter_nt</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="application" elementType="Argument">
+              <stringProp name="Argument.name">application</stringProp>
+              <stringProp name="Argument.value">${sys_name} ${script_num} ${__machineName()}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="measurement" elementType="Argument">
+              <stringProp name="Argument.name">measurement</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="summaryOnly" elementType="Argument">
+              <stringProp name="Argument.name">summaryOnly</stringProp>
+              <stringProp name="Argument.value">false</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="samplersRegex" elementType="Argument">
+              <stringProp name="Argument.name">samplersRegex</stringProp>
+              <stringProp name="Argument.value">.*</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="percentiles" elementType="Argument">
+              <stringProp name="Argument.name">percentiles</stringProp>
+              <stringProp name="Argument.value">90;95;99</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="testTitle" elementType="Argument">
+              <stringProp name="Argument.name">testTitle</stringProp>
+              <stringProp name="Argument.value">Test name</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="eventTags" elementType="Argument">
+              <stringProp name="Argument.name">eventTags</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TAG_testID" elementType="Argument">
+              <stringProp name="Argument.name">TAG_testID</stringProp>
+              <stringProp name="Argument.value">${testID}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TAG_machine_IP " elementType="Argument">
+              <stringProp name="Argument.name">TAG_machine_IP </stringProp>
+              <stringProp name="Argument.value">${__machineIP}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TAG_node_name" elementType="Argument">
+              <stringProp name="Argument.name">TAG_node_name</stringProp>
+              <stringProp name="Argument.value">${__machineName()}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="TAG_script_name" elementType="Argument">
+              <stringProp name="Argument.name">TAG_script_name</stringProp>
+              <stringProp name="Argument.value">UC${script_num}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
+      </BackendListener>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
