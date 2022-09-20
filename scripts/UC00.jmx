@@ -234,7 +234,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="queue_host" elementType="Argument">
             <stringProp name="Argument.name">queue_host</stringProp>
-            <stringProp name="Argument.value">localhost</stringProp>
+            <stringProp name="Argument.value">jmeter-0</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="queue_port" elementType="Argument">
@@ -282,7 +282,6 @@
         <collectionProp name="DNSCacheManager.servers"/>
         <boolProp name="DNSCacheManager.clearEachIteration">true</boolProp>
         <boolProp name="DNSCacheManager.isCustomResolver">false</boolProp>
-        <collectionProp name="DNSCacheManager.hosts"/>
       </DNSCacheManager>
       <hashTree/>
       <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
@@ -356,7 +355,7 @@
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV path" enabled="true">
           <stringProp name="delimiter">\t</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">./UC01/UC01_path.csv</stringProp>
+          <stringProp name="filename">./UC00/UC01_path.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
@@ -368,7 +367,7 @@
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="user" enabled="true">
           <stringProp name="delimiter">\t</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">./UC01/UC01_user.csv</stringProp>
+          <stringProp name="filename">./UC00/UC01_user.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
@@ -380,7 +379,7 @@
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="currFile" enabled="true">
           <stringProp name="delimiter">\t</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">./UC01/file.csv</stringProp>
+          <stringProp name="filename">./UC00/file.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
