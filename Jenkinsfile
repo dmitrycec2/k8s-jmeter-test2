@@ -163,7 +163,7 @@ pipeline {
 				sh 'pwd'
 				sh 'ls'
 				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash netstat -tunlp|grep 8089'
-				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print $7}\'|awk -F \"/\" \'{print $1}\'|xargs kill -9"'
+				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print \$7}\'|awk -F \"/\" \'{print $1}\'|xargs kill -9"'
 																  //netstat -tunlp|grep 8089|awk '{print }'|awk -F / '{print }'|xargs kill -9
 																  //netstat -tunlp|grep 8089|awk '{print $7}'|awk -F "/" '{print $1}'|xargs kill -9
 				sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print $7}\'"'
