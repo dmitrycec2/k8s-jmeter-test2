@@ -54,6 +54,7 @@ do
 echo "1"${profile}
     #echo "Copying scenario/${test_name} to ${slavearray[$i]}"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}"
+kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/config"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/scripts"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/profiles"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/profiles/${profile}"
@@ -67,6 +68,7 @@ kubectl cp "jmeter_parser_ALL.jar" -n $tenant "${slavearray[i]}":/opt/$jmeter/bi
 echo "3"
 kubectl cp "profiles/${profile}/scripts_params.xlsx" -n $tenant "${slavearray[i]}":/opt/$jmeter/bin/${product_name}/profiles/${profile}/scripts_params.xlsx
 echo "4" ${profile}
+kubectl cp "config/" -n $tenant "${slavearray[i]}":/opt/$jmeter/bin/${product_name}/config/
 pwd
 remote_hosts=$remote_hosts${slavearray[i]}".jmeter:1099"
 if [[ i -ne ${slavenum}-1 ]];
