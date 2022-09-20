@@ -221,7 +221,7 @@ pipeline {
 						def workspace = "${env.WORKSPACE}"
 						echo "Current workspace "+workspace
 						env.custom_var=workspace
-						currtasks1 =  runStages("slave1")
+						currtasks1 =  runStages("slave1", P_PROFILE.toString())
 							stage('Testt') {
 								parallel currtasks1
 							}					
