@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: jmeter
+  labels:
+    app: jmeter
+spec:
+  serviceName: "jmeter"
+  replicas: 4
+  selector:
+    matchLabels:
+      app: jmeter
+  template:
+    metadata:
+      labels:
+        app: jmeter
+    spec:
+      containers:
+      - name: jmeter
+        image: alrosa/jmeter-slave:latest
+        imagePullPolicy: Never
+        workingDir: /opt/apache-jmeter-5.4/bin
+        volumeMounts:
+          - name: loadtest
+            mountPath: /host
+        ports:
+        - name: jmeter-1099
+          containerPort: 1099
+        - name: jmeter-50000
+          containerPort: 50000
+      volumes:
+      - name: loadtest
+        hostPath:
+            # directory location on host
+            path: /host
+            # this field is optional
+            type: Directory
