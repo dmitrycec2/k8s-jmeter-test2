@@ -160,7 +160,7 @@ pipeline {
 		steps {
 			script {
 				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print \\$7}\'|awk -F \"/\" \'{print \\$1}\'|xargs kill -9"'
-				//sh 'kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/'				
+				sh 'kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/'				
 				//sh 'nohup kubectl exec -ti -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java -jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar" &'		
 			}		
 		}	
