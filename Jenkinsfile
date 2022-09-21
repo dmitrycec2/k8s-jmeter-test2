@@ -41,7 +41,7 @@ def runStages(String name, String profile) {
 		node("${name}") {  
 			dir("${env.custom_var}"){
 				if(P_UC02.toString()=="${name}"){
-					sh './start_test_on_slave.sh scripts/UC02.jmx jmeter-0 ${profile}'
+					sh './start_test_on_slave.sh scripts/UC02.jmx jmeter-1 ${profile}'
 				}
 			}
 		}
@@ -52,7 +52,7 @@ def runStages(String name, String profile) {
 		node("${name}") {  
 			dir("${env.custom_var}"){
 				if(P_UC03.toString()=="${name}"){
-					sh './start_test_on_slave.sh scripts/UC03.jmx jmeter-0 ${profile}'
+					sh './start_test_on_slave.sh scripts/UC03.jmx jmeter-2 ${profile}'
 				}
 			}
 		}
@@ -63,7 +63,7 @@ def runStages(String name, String profile) {
 		node("${name}") {  
 			dir("${env.custom_var}"){
 				if(P_UC04.toString()=="${name}"){
-					sh './start_test_on_slave.sh scripts/UC04.jmx jmeter-0 ${profile}'
+					sh './start_test_on_slave.sh scripts/UC04.jmx jmeter-3 ${profile}'
 				}
 			}
 		}
@@ -159,18 +159,9 @@ pipeline {
         }
 		steps {
 			script {
-			
-				sh 'pwd'
-				sh 'ls'
-				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash netstat -tunlp|grep 8089'
-				//sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print $7}\'|awk -F \"/\" \'{print $1}\'|xargs kill -9"'
-																  //netstat -tunlp|grep 8089|awk '{print }'|awk -F / '{print }'|xargs kill -9
-																  //netstat -tunlp|grep 8089|awk '{print $7}'|awk -F "/" '{print $1}'|xargs kill -9
 				sh 'kubectl exec -ti -n alrosa jmeter-0 -- bash -c "netstat -tunlp|grep 8089|awk \'{print \\$7}\'|awk -F \"/\" \'{print \\$1}\'|xargs kill -9"'
 				sh 'kubectl cp HTTPserver/ -n alrosa jmeter-0:/opt/apache-jmeter-5.4/bin/HTTPserver/'				
-				sh 'nohup kubectl exec -ti -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java -jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar" &'
-				//sh 'JENKINS_NODE_COOKIE=dontKillMe java -jar HTTPserver.jar HTTPserver.log 2>&1 &'
-			
+				sh 'nohup kubectl exec -ti -n alrosa jmeter-0 -- bash -c "JENKINS_NODE_COOKIE=dontKillMe java -jar /opt/apache-jmeter-5.4/bin/HTTPserver/HTTPserver/dist/HTTPserver.jar" &'		
 			}		
 		}	
 	}

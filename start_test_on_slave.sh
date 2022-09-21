@@ -54,7 +54,7 @@ do
 echo "1"${profile}
     #echo "Copying scenario/${test_name} to ${slavearray[$i]}"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}"
-#kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/config"
+kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/config"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/scripts"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/profiles"
 kubectl exec -n $tenant --stdin "${slavearray[i]}" -- bash -c "mkdir -p /opt/$jmeter/bin/${product_name}/profiles/${profile}"

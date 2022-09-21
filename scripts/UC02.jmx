@@ -15,7 +15,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="temp_script_num" elementType="Argument">
             <stringProp name="Argument.name">temp_script_num</stringProp>
-            <stringProp name="Argument.value">01</stringProp>
+            <stringProp name="Argument.value">02</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="temp_testID" elementType="Argument">
@@ -61,11 +61,6 @@
             <stringProp name="Argument.value">dl</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="temp_iterationCount" elementType="Argument">
-            <stringProp name="Argument.name">temp_iterationCount</stringProp>
-            <stringProp name="Argument.value">10</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
         </collectionProp>
       </Arguments>
       <hashTree/>
@@ -109,11 +104,6 @@
           <elementProp name="pacingTargetThroughput" elementType="Argument">
             <stringProp name="Argument.name">pacingTargetThroughput</stringProp>
             <stringProp name="Argument.value">${__property(pacingTargetThroughput, pacingTargetThroughput, ${temp_pacingTargetThroughput})}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="iterationCount" elementType="Argument">
-            <stringProp name="Argument.name">iterationCount</stringProp>
-            <stringProp name="Argument.value">${__property(iterationCount, iterationCount, ${temp_iterationCount})}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -262,9 +252,9 @@
             <stringProp name="Argument.value">docs</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="outDeleteQueue" elementType="Argument">
-            <stringProp name="Argument.name">outDeleteQueue</stringProp>
-            <stringProp name="Argument.value">outDeleteQueue</stringProp>
+          <elementProp name="filePath" elementType="Argument">
+            <stringProp name="Argument.name">filePath</stringProp>
+            <stringProp name="Argument.value">/UC02/UC02_filepath.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -320,21 +310,24 @@
         <boolProp name="CacheManager.controlledByThread">false</boolProp>
       </CacheManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+      <kg.apc.jmeter.threads.SteppingThreadGroup guiclass="kg.apc.jmeter.threads.SteppingThreadGroupGui" testclass="kg.apc.jmeter.threads.SteppingThreadGroup" testname="UC02" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
-        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+        <stringProp name="ThreadGroup.num_threads">${targetConcurrency}</stringProp>
+        <stringProp name="Threads initial delay">0</stringProp>
+        <stringProp name="Start users count">${stepSize}</stringProp>
+        <stringProp name="Start users count burst">0</stringProp>
+        <stringProp name="Start users period">${stepTime}</stringProp>
+        <stringProp name="Stop users count">0</stringProp>
+        <stringProp name="Stop users period">0</stringProp>
+        <stringProp name="flighttime">${holdLoad}</stringProp>
+        <stringProp name="rampUp">${rampUpTime}</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">${iterationCount}</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration">0</stringProp>
-        <stringProp name="ThreadGroup.delay">0</stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-      </ThreadGroup>
+      </kg.apc.jmeter.threads.SteppingThreadGroup>
       <hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="pacing_01" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="pacing_02" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
@@ -352,22 +345,10 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV path" enabled="true">
-          <stringProp name="delimiter">\t</stringProp>
-          <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">./UC00/UC01_path.csv</stringProp>
-          <boolProp name="ignoreFirstLine">false</boolProp>
-          <boolProp name="quotedData">false</boolProp>
-          <boolProp name="recycle">true</boolProp>
-          <stringProp name="shareMode">shareMode.all</stringProp>
-          <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">lineNum,currPath,readblePath</stringProp>
-        </CSVDataSet>
-        <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="user" enabled="true">
           <stringProp name="delimiter">\t</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">./UC00/UC01_user.csv</stringProp>
+          <stringProp name="filename">./UC02/UC02_user.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
@@ -376,102 +357,24 @@
           <stringProp name="variableNames">user,pass,userid</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="currFile" enabled="true">
-          <stringProp name="delimiter">\t</stringProp>
-          <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">./UC00/file.csv</stringProp>
-          <boolProp name="ignoreFirstLine">false</boolProp>
-          <boolProp name="quotedData">false</boolProp>
-          <boolProp name="recycle">true</boolProp>
-          <stringProp name="shareMode">shareMode.all</stringProp>
-          <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">currFile</stringProp>
-        </CSVDataSet>
-        <hashTree/>
-        <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="docCounter" enabled="true">
-          <stringProp name="CounterConfig.start">1</stringProp>
-          <stringProp name="CounterConfig.end"></stringProp>
-          <stringProp name="CounterConfig.incr">1</stringProp>
-          <stringProp name="CounterConfig.name">docCounter</stringProp>
-          <stringProp name="CounterConfig.format"></stringProp>
-          <boolProp name="CounterConfig.per_user">false</boolProp>
-        </CounterConfig>
-        <hashTree/>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="UC01-MAIN" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="UC02-MAIN" enabled="true">
           <boolProp name="TransactionController.includeTimers">false</boolProp>
           <boolProp name="TransactionController.parent">false</boolProp>
         </TransactionController>
         <hashTree>
-          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="UC01_04_saveDoc" enabled="true">
-            <boolProp name="TransactionController.includeTimers">false</boolProp>
-            <boolProp name="TransactionController.parent">false</boolProp>
-          </TransactionController>
-          <hashTree>
-            <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="jp@gc - Dummy Sampler" enabled="true">
-              <boolProp name="WAITING">true</boolProp>
-              <boolProp name="SUCCESFULL">true</boolProp>
-              <stringProp name="RESPONSE_CODE">200</stringProp>
-              <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
-              <stringProp name="REQUEST_DATA">Dummy Sampler used to simulate requests and responses
-without actual network activity. This helps debugging tests.</stringProp>
-              <stringProp name="RESPONSE_DATA">Dummy Sampler used to simulate requests and responses
-without actual network activity. This helps debugging tests.</stringProp>
-              <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
-              <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
-              <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
-              <stringProp name="URL"></stringProp>
-              <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
-            </kg.apc.jmeter.samplers.DummySampler>
-            <hashTree>
-              <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="docId" enabled="true">
-                <stringProp name="scriptLanguage">groovy</stringProp>
-                <stringProp name="parameters"></stringProp>
-                <stringProp name="filename"></stringProp>
-                <stringProp name="cacheKey">false</stringProp>
-                <stringProp name="script">import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-DateFormat df = new SimpleDateFormat(&quot;ddMMyyyyhhmmss&quot;);
-String requiredDate = df.format(new Date()).toString();
-vars.put(&quot;docId&quot;, requiredDate+&quot;_&quot;+vars.get(&quot;docCounter&quot;));</stringProp>
-              </JSR223PreProcessor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="docPath" enabled="true">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">docPath</stringProp>
-                <stringProp name="RegexExtractor.regex">path&quot;:&quot;(.+?)&quot;}</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number">1</stringProp>
-              </RegexExtractor>
-              <hashTree/>
-              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="filePath" enabled="true">
-                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-                <stringProp name="RegexExtractor.refname">filePath</stringProp>
-                <stringProp name="RegexExtractor.regex">&quot;:&quot;(.+?)&quot;}</stringProp>
-                <stringProp name="RegexExtractor.template">$1$</stringProp>
-                <stringProp name="RegexExtractor.default"></stringProp>
-                <stringProp name="RegexExtractor.match_number"></stringProp>
-              </RegexExtractor>
-              <hashTree/>
-            </hashTree>
-          </hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="toQueue" enabled="true">
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="fromQueue" enabled="true">
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="parameters"></stringProp>
-            <stringProp name="script">def outQueue = vars.get(&quot;outQueue&quot;);
-def outDeleteQueue = vars.get(&quot;outDeleteQueue&quot;);
-toQueue(outQueue+&quot;_testuser2&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser3&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser4&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser5&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser6&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser7&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser8&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser9&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outQueue+&quot;_testuser10&quot;, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
-toQueue(outDeleteQueue, vars.get(&quot;docPath&quot;)+&quot;;&quot;+vars.get(&quot;filePath&quot;));
+            <stringProp name="script">def outQueue = vars.get(&quot;outQueue&quot;)+&quot;_&quot;+vars.get(&quot;user&quot;);
+log.info(&quot;INFO______________&quot; +  outQueue)
+String s = listPoll(outQueue);
+String[] parts = s.split(&quot;;&quot;);
+
+vars.put(&quot;docPath&quot;,parts[0]);
+vars.put(&quot;filePath&quot;,parts[1]);
+
+
 //-------------------functions--------------------
 
 public String listPoll(String AFParam) {	
@@ -512,27 +415,6 @@ public boolean toQueue(String AFQueue, String AFValue) {
 	return false;
 }
 
-
-/*унифицированный запрос listoffer к очереди*/  
-public boolean valuePut(String AFQueue, String AFValue) {
-	if(isValueFound(AFQueue) &amp;&amp; isValueFound(AFValue)){		
-		StringBuffer sb = new StringBuffer();
-		sb.append(&quot;http://&quot;);
-		sb.append(vars.get(&quot;queue_host&quot;));
-		sb.append(&quot;:&quot;);
-		sb.append(vars.get(&quot;queue_port&quot;));
-		sb.append(&quot;/valueput?param=&quot;);
-		sb.append(AFQueue);
-		sb.append(&quot;&amp;value=&quot;);
-		sb.append(AFValue);
-		def get = new URL(sb.toString()).openConnection();
-		//log.info(&quot;INFO__________sb.toString()______________&quot;+ sb.toString())
-		def getRC = get.getResponseCode();
-		return true;
-	}
-	return false;
-}
-
 /*проверка входящей строки*/
 public boolean isValueFound(String varValue) {
 	return (varValue != null) &amp;&amp; (!varValue.isEmpty()) &amp;&amp; (!&quot;NOTFOUND&quot;.equals(varValue)) &amp;&amp; (varValue.length() &gt; 0);
@@ -540,15 +422,31 @@ public boolean isValueFound(String varValue) {
             <stringProp name="scriptLanguage">groovy</stringProp>
           </JSR223Sampler>
           <hashTree/>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="UC02_02_openDoc" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="jp@gc - Dummy Sampler" enabled="true">
+              <boolProp name="WAITING">true</boolProp>
+              <boolProp name="SUCCESFULL">true</boolProp>
+              <stringProp name="RESPONSE_CODE">200</stringProp>
+              <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+              <stringProp name="REQUEST_DATA">Dummy Sampler used to simulate requests and responses
+without actual network activity. This helps debugging tests.</stringProp>
+              <stringProp name="RESPONSE_DATA">Dummy Sampler used to simulate requests and responses
+without actual network activity. This helps debugging tests.</stringProp>
+              <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+              <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+              <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+              <stringProp name="URL"></stringProp>
+              <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+            </kg.apc.jmeter.samplers.DummySampler>
+            <hashTree/>
+          </hashTree>
         </hashTree>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
-          <boolProp name="displayJMeterProperties">false</boolProp>
-          <boolProp name="displayJMeterVariables">true</boolProp>
-          <boolProp name="displaySystemProperties">false</boolProp>
-        </DebugSampler>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
           <objProp>
             <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
@@ -561,101 +459,30 @@ public boolean isValueFound(String varValue) {
               <message>true</message>
               <threadName>true</threadName>
               <dataType>true</dataType>
-              <encoding>false</encoding>
+              <encoding>true</encoding>
               <assertions>true</assertions>
               <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
               <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
               <responseDataOnError>false</responseDataOnError>
               <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
               <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
               <sentBytes>true</sentBytes>
               <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
               <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
               <idleTime>true</idleTime>
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="false">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
-        </ResultCollector>
-        <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
-          <boolProp name="ResultCollector.error_logging">false</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">/tmp/nt/DL/uc02_${__time(,)}.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
