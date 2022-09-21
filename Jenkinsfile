@@ -30,7 +30,7 @@ def runStages(String name, String profile) {
 			dir("${env.custom_var}"){
 				if(P_UC01.toString()=="${name}"){
 					//sh "./profile_run.sh ${profile} UC01"
-					sh './start_test_on_slave.sh scripts/UC01.jmx jmeter-0 ${profile}'
+					sh './start_test_on_slave.sh scripts/UC01.jmx jmeter-0 profile_confirm'
 				}		
 			}
 		}
@@ -41,7 +41,7 @@ def runStages(String name, String profile) {
 		node("${name}") {  
 			dir("${env.custom_var}"){
 				if(P_UC02.toString()=="${name}"){
-					sh './start_test_on_slave.sh scripts/UC02.jmx jmeter-1 ${profile}'
+					sh './start_test_on_slave.sh scripts/UC02.jmx jmeter-1 profile_confirm'
 				}
 			}
 		}
