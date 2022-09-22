@@ -30,6 +30,7 @@ def runStages(String name, String profile) {
 			dir("${env.custom_var}"){
 				if(P_UC01.toString()=="${name}"){
 					//sh "./profile_run.sh ${profile} UC01"
+					
 					sh './start_test_on_slave.sh scripts/UC01.jmx jmeter-0 profile_confirm'
 				}		
 			}
@@ -52,7 +53,9 @@ def runStages(String name, String profile) {
 		node("${name}") {  
 			dir("${env.custom_var}"){
 				if(P_UC03.toString()=="${name}"){
-					sh './start_test_on_slave.sh scripts/UC03.jmx jmeter-2 ${profile}'
+				    echo "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP "+${profile}
+					echo "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPWWW ${profile}"
+					sh './start_test_on_slave.sh scripts/UC03.jmx jmeter-2 "${profile}"'
 				}
 			}
 		}
@@ -218,9 +221,9 @@ pipeline {
 						echo "Current workspace "+workspace
 						echo "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ "+P_PROFILE.toString()
 						env.custom_var=workspace
-						currtasks1 =  runStages("slave1", P_PROFILE.toString())
+						currtasks2 =  runStages("slave1", P_PROFILE.toString())
 							stage('Testt') {
-								parallel currtasks1
+								parallel currtasks2
 							}					
 					}	
 				}
@@ -228,6 +231,35 @@ pipeline {
 			
 		}	
 	}
+	
+	
+    stage('Stop Tests') {
+		parallel {				
+		stage('Stop HTTPserver On slave1') {
+		when {
+			beforeAgent true;
+			expression {
+				return P_HTTP_ON_SLAVE1.toString()!='NULL';
+			}        
+		}
+			agent {
+				label 'slave1'
+			}
+			steps {
+				script {
+						dir("${env.custom_var}/docs"){
+							sh './toDisk.sh'				
+						echo "cp data files"	
+						sh "cp ${env.WORKSPACE}/docs/prepare/toServList.csv /tmp/nt/DL/toServList.csv"
+						}									
+				}		
+			}	
+		}		
+		
+		}	
+	}		
+	
+	
   }
  
 }
