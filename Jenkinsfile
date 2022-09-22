@@ -216,6 +216,7 @@ pipeline {
 						echo "Current workspace is ${env.WORKSPACE}"
 						def workspace = "${env.WORKSPACE}"
 						echo "Current workspace "+workspace
+						echo "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ "+P_PROFILE.toString()
 						env.custom_var=workspace
 						currtasks1 =  runStages("slave1", P_PROFILE.toString())
 							stage('Testt') {
