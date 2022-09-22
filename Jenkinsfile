@@ -53,9 +53,9 @@ def runStages(String name, String profile) {
 		node("${name}") {  
 			dir("${env.custom_var}"){
 				if(P_UC03.toString()=="${name}"){
-				    echo "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP "+${profile}
-					echo "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPWWW ${profile}"
-					//sh './start_test_on_slave.sh scripts/UC03.jmx jmeter-2 "${profile}"'
+				    //echo "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP "+${profile}
+					//echo "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPWWW ${profile}"
+					sh "./start_test_on_slave.sh scripts/UC03.jmx jmeter-2 ${profile}"
 				}
 			}
 		}
