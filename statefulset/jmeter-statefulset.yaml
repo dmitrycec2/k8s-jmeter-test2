@@ -32,6 +32,6 @@ spec:
       - name: loadtest
         hostPath:
             # directory location on host
-            path: /host
+            path: /
             # this field is optional
             type: Directory
