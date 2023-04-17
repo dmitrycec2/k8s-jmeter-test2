@@ -1,4 +1,4 @@
-FROM kubernautslabs/jmeter-base:latest
+FROM alrosa/jmeter-base:latest
 MAINTAINER Kubernauts-lab
 		
 EXPOSE 1099 50000
